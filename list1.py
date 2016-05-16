@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Filename list1.py
 # 读取本目录的文件名并且打包压缩，备份
