@@ -8,7 +8,7 @@
 
 
 import pymysql
-conn = pymysql.connect(user='root',password='',database='test')
+conn = pymysql.connect(user='root',password='root',database='test')
 cursor = conn.cursor()
 # 创建user表:
 cursor.execute('create table user (id varchar(20) primary key, name varchar(20))')
@@ -18,7 +18,6 @@ print('cursor.rowcount:',cursor.rowcount)
 # 提交事务:
 conn.commit()
 cursor.close()
-# 运行查询:
 cursor = conn.cursor()
 cursor.execute('select * from user where id = %s', ('1',))
 values = cursor.fetchall()
