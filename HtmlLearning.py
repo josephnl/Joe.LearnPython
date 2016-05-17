@@ -1,9 +1,10 @@
-#/usr/bin/env python3
+# /usr/bin/env python3
 # -*- coding: utf-8 -*-
 # filename HtmlLearning.py
 
 from html.parser import HTMLParser
 from html.entities import name2codepoint
+
 
 class MyHTMLParser(HTMLParser):
 
@@ -37,4 +38,4 @@ parser.feed(
     <p>Some <a href=\"#\">html</a> HTML&nbsp;tutorial...<br>END</p>
     </body>
     </html>'''
-    )
+)

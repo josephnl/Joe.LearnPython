@@ -1,4 +1,4 @@
-#/usr/bin/env python3
+# /usr/bin/env python3
 # -*- coding: utf-8 -*-
 # filename urllib2.py
 
@@ -24,3 +24,4 @@ with request.urlopen(req) as f:
 
 
 # 可能因为在公司环境中，陈炜在抓豆瓣数据，所以，对于豆瓣的页面抓取总是出差错，回家试一试
+# 错了，从今天的经验来看，是豆瓣禁止爬虫了，需要在request中做一些伪装，把headers，Cookie, host加入，
