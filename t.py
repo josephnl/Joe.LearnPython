@@ -7,6 +7,8 @@ import time
 import requests
 from bs4 import BeautifulSoup
 import random
+import re
+
 # 把str编码由ascii改为utf8（或gb18030）
 # import sys
 # reload(sys)
@@ -28,22 +30,30 @@ plain_text = source_code.text
 
 # BeautifulSoup objects can be sorted through easy
 soup = BeautifulSoup(plain_text,"lxml")
-
+# 取书列表的soup
 list_soup = soup.find('ul', {'class': 'subject-list'})
+# 单本书的soup
 book_info = list_soup.find('li')
 
+# 书名
 title = book_info.find('a', {'title': True}).string.strip()
+# 评分
 try:
     rating = int(book_info.find('span', {'class': 'rating_nums'}).string.strip())
-except AttributeError:
+except AttributeError: # 可能无人评分
     rating = 0
-comment = book_info.find('span', {'class': 'pl'}).string.strip()
-comment_nums = int(re.findall(r"\d+",comment))
+# 多少人评论过这本书（看这本书的热度）
+comment = book_info.find('span', {'class': 'pl'}).string.strip()  # ddd人评论
+comment_nums = int(re.search(r"\d+",comment).group()) # 转化为整数
+# 简介
 brief_info = book_info.find('p').string.strip()
+# 豆瓣购买价格
 buy_info = book_info.find('span', {'class': 'buy-info'}).string.strip()
 
+# 书的描述，需要分解为 作者，译者，出版社，出版时间，目录价 ，其中有一些书没有译者，直接是作者
 desc = book_info.find('div', {'class': 'pub'}).string.strip()
 desc_list = desc.split('/')
+
 list_price = desc_list.pop()
 pub_time = desc_list.pop()
 publishing = desc_list.pop()
@@ -53,3 +63,5 @@ if len(desc_list) > 1:
 else:
     author_info = desc_list.pop()
     trans_info = "无"
+
+INSERT INTO `QUESTION` (`ID`,`NAME`,`LINK_ID`,`FOCUS`,`ANSWER`,`LAST_VISIT`,`ADD_TIME`,`TOP_ANSWER_NUMBER`) VALUES (1,'我想买一套FRESH，T字部位出油脱皮，两颊皮薄，毛孔有点大，应该买什么系列的？',27567083,3,1,1421966995,1421133097,0);
