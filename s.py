@@ -4,13 +4,17 @@
 
 import pymysql
 
+<<<<<<< HEAD
 conn = pymysql.connect(user='root', password='root',
                        database='DOUBAN_DATA', charset='utf8')
+=======
+conn = pymysql.connect(user='root', password='', database='DOUBAN_DATA', charset='utf8')
+>>>>>>> origin/master
 cursor = conn.cursor()
 
 # 形成内容
 title = '认识商业'
-rating = 8
+rating = 8.5
 comment_nums = 666
 brief_info = '《认识商业》是全美高等院校采用量最大的商业入门教材，出版三十多年来，在西方国家长销不衰，并被全球几百所大专院校列为企业管理课程、MBA教程的必选教材。历经七...'
 buy_info = '纸质版 52.40 元起'

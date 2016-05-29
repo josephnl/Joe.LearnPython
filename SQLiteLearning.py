@@ -1,4 +1,4 @@
-#/usr/bin/env python3
+# /usr/bin/env python3
 # -*- coding: utf-8 -*-
 # filename mysql.py
 
@@ -8,16 +8,23 @@
 
 
 import pymysql
-conn = pymysql.connect(user='root',password='root',database='test')
+
+conn = pymysql.connect(user='root', password='', database='test')
 cursor = conn.cursor()
 # 创建user表:
 cursor.execute('create table user1 (id varchar(20) primary key, name varchar(20))')
 # 插入一行记录，注意MySQL的占位符是%s:
+<<<<<<< HEAD
+cursor.execute('insert into user (id, name) values (%s, %s)', ['1', 'Michael'])
+print('cursor.rowcount:', cursor.rowcount)
+=======
 cursor.execute('insert into user1 (id, name) values (%s, %s)', ['1', 'Michael'])
 print('cursor.rowcount:',cursor.rowcount)
+>>>>>>> origin/master
 # 提交事务:
 conn.commit()
 cursor.close()
+# 运行查询:
 cursor = conn.cursor()
 cursor.execute('select * from user1 where id = %s', ('1',))
 values = cursor.fetchall()
