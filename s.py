@@ -4,7 +4,8 @@
 
 import pymysql
 
-conn = pymysql.connect(user='root', password='root', database='DOUBAN_DATA', charset='utf8')
+conn = pymysql.connect(user='root', password='root',
+                       database='DOUBAN_DATA', charset='utf8')
 cursor = conn.cursor()
 
 # 形成内容
@@ -21,9 +22,10 @@ list_price = '68.00元'
 book_tag = '经济学'
 
 # 执行SQL
-sql =  "insert into DOUBAN_BOOKLIST (title, rating, comment_nums, brief_info, buy_info, author_info, trans_info, publishing, pub_time, list_price, book_tag) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+sql = "insert into DOUBAN_BOOKLIST (title, rating, comment_nums, brief_info, buy_info, author_info, trans_info, publishing, pub_time, list_price, book_tag) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 print(sql)
-cursor.execute(sql, [title, rating, comment_nums, brief_info, buy_info, author_info, trans_info, publishing, pub_time, list_price, book_tag])
+cursor.execute(sql, [title, rating, comment_nums, brief_info, buy_info,
+                     author_info, trans_info, publishing, pub_time, list_price, book_tag])
 
 # 提交事物
 conn.commit()
